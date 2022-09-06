@@ -14,22 +14,22 @@ inline void build(){
         belong[i]=(i-1)/blocksize+1;
         d[i]=arr[i];
     }
-    for(int i=1;i<=cnt;++i)sort(d+l[i],d+1+r[i]);
+    for(int i=1;i<=cnt;++i)sort(d+l[i],d+r[i]+1);
 }
 inline void modify(int L,int R,int V){
     if(belong[L]==belong[R]){
         for(int i=L;i<=R;++i)arr[i]+=V;
         for(int i=l[belong[L]];i<=r[belong[L]];++i)d[i]=arr[i];
-        sort(d+l[belong[L]],d+1+r[belong[L]]);
+        sort(d+l[belong[L]],d+r[belong[L]]+1);
         return;
     }
     for(int i=L;i<=r[belong[L]];++i)arr[i]+=V;
     for(int i=l[belong[L]];i<=r[belong[L]];++i)d[i]=arr[i];
-    sort(d+l[belong[L]],d+1+r[belong[L]]);
+    sort(d+l[belong[L]],d+r[belong[L]]+1);
     for(int i=belong[L]+1;i<belong[R];++i)mark[i]+=V;
     for(int i=l[belong[R]];i<=R;++i)arr[i]+=V;
     for(int i=l[belong[R]];i<=r[belong[R]];++i)d[i]=arr[i];
-    sort(d+l[belong[R]],d+1+r[belong[R]]);
+    sort(d+l[belong[R]],d+r[belong[R]]+1);
 }
 inline int logalgor(int block,int k){
     int L=l[block],R=r[block];
