@@ -1,4 +1,4 @@
-let request=require("request");
+;;let request=require("request");
 request.get({
     url: `https://www.luogu.com.cn/problem/solution/${process.argv[2]}`,
     headers: {                                                   
