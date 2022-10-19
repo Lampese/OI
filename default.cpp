@@ -16,7 +16,7 @@ inline bool under(int &a,int &b){return a>b;}
 #define OUT(_ch) stdout->_IO_write_ptr<stdout->_IO_write_end?*stdout->_IO_write_ptr++=_ch:__overflow(stdout,_ch)
 #else
 #define IN getchar()
-#define OUT(_ch) putchar(_ch) 
+#define OUT(_ch) putchar(_ch)
 #endif
 template<typename T>inline T mul(T x,T y,const T p){
 	register T res(0);
@@ -52,6 +52,6 @@ template<typename T>void __print(T x){if(x>9)__print(x/10);OUT(x%10+48);}
     template<typename T>void printspace(T x){__print(x),OUT(' ');}
     template<typename T>void println(T x){__print(x),OUT('\n');}
 #endif
-int main(){
+signed main(){
 
 }
