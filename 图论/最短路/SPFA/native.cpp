@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define MAXN 500005
-#define INF 2147483647;
+#define INF 2147483647
 bitset<MAXN>vis;
 int head[MAXN],dis[MAXN],m,n,ecnt;
 struct edge{

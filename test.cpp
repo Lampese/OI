@@ -1,42 +1,48 @@
 #include<bits/stdc++.h>
 using namespace std;
-deque<int>p,q;
-int main(){
-    int n,k,temp,a[1000005];
-    cin>>n>>k;
-    for(register int i=1;i<=n;++i){
-        cin>>temp;
-        while(!q.empty()){
-            if(q.front()+k<=i)q.pop_front(),p.pop_front();
-            else break;
+bool vis[200005];
+long long arr[200005],t,n;
+struct _{
+    long long id,dead;
+}d[200005];
+inline bool cmp(_ a,_ b){
+    return a.dead<b.dead;
+}
+inline long long kill(long long x){
+    long long dd=d[x].dead;
+    x=d[x].id;
+    vis[x]=true;
+    for(register long long i=x-1;i>=1;--i){
+        if(vis[i]==false){
+            arr[i]+=dd;
+            break;
         }
-        if(p.empty())p.push_back(temp),q.push_back(i);
-        else{
-            while(!p.empty())
-                if(p.back()>temp)
-                    p.pop_back(),q.pop_back();
-                else break;
-            p.push_back(temp),q.push_back(i);
-        }
-        if(i>=k)cout<<p.front()<<" ";
-        a[i]=temp;
     }
-    cout<<endl;
-    p.clear(),q.clear();
-    for(register int i=1;i<=n;++i){
-        temp=a[i];
-        while(!q.empty()){
-            if(q.front()+k<=i)q.pop_front(),p.pop_front();
-            else break;
+    for(register long long i=x+1;i<=n;++i){
+        if(vis[i]==false){
+            arr[i]+=dd;
+            break;
         }
-        if(p.empty())p.push_back(temp),q.push_back(i);
-        else{
-            while(!p.empty())
-                if(p.back()<temp)
-                    p.pop_back(),q.pop_back();
-                else break;
-            p.push_back(temp),q.push_back(i);
+    }
+    return arr[x];
+}
+int main(){
+    cin>>t;
+    while(t--){
+        cin>>n;
+        for(register long long i=1;i<=n;++i)vis[i]=false;
+        long long ans(0);
+        for(register long long i=1;i<=n;++i){
+            cin>>arr[i];
         }
-        if(i>=k)cout<<p.front()<<" ";
+        for(register long long i=1;i<=n;++i){
+            cin>>d[i].dead;
+            d[i].id=i;
+        }
+        sort(d+1,d+n+1,cmp);
+        for(register long long i=1;i<=n;++i){
+            ans+=kill(i);
+        }
+        cout<<ans<<endl;
     }
 }
