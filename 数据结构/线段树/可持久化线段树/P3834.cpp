@@ -10,7 +10,7 @@ inline int build(int l,int r){
     if(l<r){
         int mid=(l+r)>>1;
         L[rt]=build(l,mid);
-        L[rt]=build(mid+1,r);
+        R[rt]=build(mid+1,r);
     }
     return rt;
 }
